@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PelangganController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/pelanggan', [PelangganController::class,'create'])->name('pelanggan');
+
+Route::get('/tambahpelanggan', [PelangganController::class,'tambahpelanggan']);
+Route::post('/insertdata', [PelangganController::class,'insertdata']);
+
+Route::get('/tampilkandata/{id}', [PelangganController::class,'tampilkandata'])->name('tampilkandata');
+Route::post('/updatedata/{id}', [PelangganController::class,'updatedata'])->name('updatedata');
+
+Route::get('/delete/{id}', [PelangganController::class,'delete'])->name('delete');

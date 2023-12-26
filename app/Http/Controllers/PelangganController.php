@@ -18,7 +18,7 @@ class PelangganController extends Controller
     public function insertdata(Request $request){
         //dd($request->all());
         Pelanggan::create($request->all());
-        return redirect()->route('pelanggan')->with('succes','Pelanggan Berhasil Ditambahkan');
+        return redirect()->route('pelanggan')->with('toast_success', 'Pelanggan Berhasil Ditambahkan!');
     }
     public function tampilkandata($id){
         $data = Pelanggan::find($id);

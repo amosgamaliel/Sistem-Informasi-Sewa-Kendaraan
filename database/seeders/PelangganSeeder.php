@@ -14,7 +14,7 @@ class PelangganSeeder extends Seeder
     {
         DB::table('pelanggans')->insert([
             'nama' => 'Saya',
-            'no_telepon' => '082331640355',
+            'contact' => '082331640355',
             'alamat' => 'Barat',
 
         ]);

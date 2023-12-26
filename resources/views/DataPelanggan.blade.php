@@ -1,53 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pelanggan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1 class="text-center mb-4">DATA PELANGGAN</h1>
-
-    <div class="container">
-    <a href="/tambahpelanggan" type="button" class="btn btn-success">Tambah +</a>
-        <div class="row">
-          @if($message = Session::get('succes'))
-          <div class="alert alert-success" role="alert">
-            {{$message}}
-            @endif
-          </div>
-        </div>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Nama</th>
-      <th scope="col">No_Telepon</th>
-      <th scope="col">Alamat</th>
-      <th scope="col">Opsi</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($data as $row)
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
+</head>
+<body>
+<h1><span class="blue"></span>DATA<span class="blue"></span> <span class="yellow">PELANGGAN</pan></h1>
+<h2> <a href="/tambahpelanggan" type="button" class="btn btn-success">Tambah +</a></h2>
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Id</h1></th>
+			<th><h1>Nama</h1></th>
+			<th><h1>Contact</h1></th>
+			<th><h1>Alamat</h1></th>
+            <th><h1>Aksi</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+	@foreach ($data as $row)
     <tr>
       <th scope="row">{{ $row->id}}</th>
       <td>{{ $row->nama}}</td>
-      <td>0{{ $row->no_telepon}}</td>
+      <td>0{{ $row->contact}}</td>
       <td>{{ $row->alamat}}</td>
-      <td>
-        <a href="/delete/{{ $row->id}}" class="btn btn-danger">Hapus</a>
-        <a href="/tampilkandata/{{ $row->id}}" class="btn btn-info">Edit</a>
-    </td>
+      <td><a href="#" class="btn btn-danger hapus" data-id="{{ $row->id}}" data-nama="{{ $row->nama}}">Hapus</a></td>
+		  <td><a href="/tampilkandata/{{ $row->id}}" class="btn btn-info">Edit</a></td>
     </tr>
     @endforeach
-  
-
-        </div>
-
-    
-  </tbody>
+	</tbody>
 </table>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+
+        <!-- <script src="sweetalert2/dist/sweetalert2.min.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        @include('sweetalert::alert')
+
+        
+</body>
+ <script>
+    $('.hapus').click(function(){
+        var id = $(this).attr('data-id');
+        var nama = $(this).attr('data-nama');
+
+        swal({
+  title: "Apakah Anda Yakin?",
+  text: "Anda akan menghapus pelanggan Dengan Id "+id+"",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    window.location = "/delete/"+id+""
+    swal("Pelanggan Berhasil Dihapus!", {
+      icon: "success",
+    });
+  } else {
+    swal("Pelanggan Tidak Dihapus!");
+  }
+});
+    });
+
+ </script>
 </html>

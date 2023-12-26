@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tambah Pelanggan</title>
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/form.css') }}">
-
-</head>
-<body>
+<x-app-layout>
   <form action="/insertdata" method="POST" enctype="multipart/form-data">
     @csrf
-<div class="form">
+    <div class="form">
       <div class="title">Welcome</div>
       <div class="subtitle">Masukan Data Diri Anda</div>
       <div class="input-container ic1">
@@ -30,6 +21,5 @@
       </div>
       <button type="text" class="submit">submit</button>
     </div>
-</form>
-</body>
-</html>
+  </form>
+</x-app-layout>

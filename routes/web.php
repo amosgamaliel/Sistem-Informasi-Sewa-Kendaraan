@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DendaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/denda', [DendaController::class,'index'])->name('denda');
+Route::get('/user', [DendaController::class,'asd']);
+
+Route::get('/tambahdenda', [DendaController::class,'tambahdenda'])->name('tambahdenda');
+Route::post('/simpandata', [DendaController::class,'simpandata'])->name('simpandata');

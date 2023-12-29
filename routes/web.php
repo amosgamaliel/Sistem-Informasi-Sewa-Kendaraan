@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KendaraanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DendaController;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
@@ -20,22 +21,6 @@ use App\Http\Controllers\PelangganController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::prefix('kendaraan')->group(function () {
-    Route::get('/get', [KendaraanController::class, 'index'])->name('Kendaraan');
-
-    Route::get('/viewkendaraan', [KendaraanController::class, 'viewkendaraan'])->name('viewkendaraan');
-
-    Route::get('/tambahdata', [KendaraanController::class, 'tambahdatakendaraan'])->name('tambahdatakendaraan');
-    Route::post('/insertdata', [KendaraanController::class, 'insertdata'])->name('insertdata');
-
-    Route::get('/tampilkandata/{id}', [KendaraanController::class, 'tampilkandata'])->name('tampilkandata');
-    Route::post('/updatedata/{id}', [KendaraanController::class, 'updatedata'])->name('updatedata');
-
-    Route::get('/delete/{id}', [KendaraanController::class, 'delete'])->name('delete');
-    Route::redirect('/', 'login');
-});
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::prefix('pelanggan')->group(function () {
@@ -43,27 +28,36 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::get('/tambahpelanggan', [PelangganController::class, 'tambahpelanggan']);
         Route::post('/insertdata', [PelangganController::class, 'insertdata']);
-    
+
         Route::get('/tampilkandata/{id}', [PelangganController::class, 'tampilkandata'])->name('tampilkandata');
         Route::post('/updatedata/{id}', [PelangganController::class, 'updatedata'])->name('updatedata');
-    
+
         Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('kendaraan')->group(function () {
         Route::get('/get', [KendaraanController::class, 'index'])->name('Kendaraan');
-    
+
         Route::get('/viewkendaraan', [KendaraanController::class, 'viewkendaraan'])->name('viewkendaraan');
-    
+
         Route::get('/tambahdata', [KendaraanController::class, 'tambahdatakendaraan'])->name('tambahdatakendaraan');
         Route::post('/insertdata', [KendaraanController::class, 'insertdata'])->name('insertdata');
-    
+
         Route::get('/tampilkandata/{id}', [KendaraanController::class, 'tampilkandata'])->name('tampilkandata');
         Route::post('/updatedata/{id}', [KendaraanController::class, 'updatedata'])->name('updatedata');
-    
+
         Route::get('/delete/{id}', [KendaraanController::class, 'delete'])->name('delete');
     });
-    
+
+    Route::prefix('denda')->group(function () {
+
+        Route::get('/denda', [DendaController::class, 'index'])->name('denda');
+        Route::get('/user', [DendaController::class, 'asd']);
+
+        Route::get('/tambahdenda', [DendaController::class, 'tambahdenda'])->name('tambahdenda');
+        Route::post('/simpandata', [DendaController::class, 'simpandata'])->name('simpandata');
+    });
+
     Route::redirect('/', 'login');
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');

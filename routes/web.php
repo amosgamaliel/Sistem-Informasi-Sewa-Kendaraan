@@ -6,6 +6,7 @@ use App\Http\Controllers\DendaController;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TambahTransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,11 @@ use App\Http\Controllers\PelangganController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/pilih/kendaraan', [TambahTransaksiController::class, 'indexKendaraan'])->name('transaksi.pilih');
+Route::get('/detail/{kendaraan}', [TambahTransaksiController::class, 'showKendaraan'])->name('transaksi.detail-kendaraan');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::prefix('master/pelanggan')->group(function () {

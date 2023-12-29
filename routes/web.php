@@ -35,18 +35,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
     });
 
-    Route::prefix('kendaraan')->group(function () {
-        Route::get('/get', [KendaraanController::class, 'index'])->name('Kendaraan');
+    Route::prefix('master/kendaraan')->group(function () {
+        Route::get('', [KendaraanController::class, 'index'])->name('kendaraan.index');
 
-        Route::get('/viewkendaraan', [KendaraanController::class, 'viewkendaraan'])->name('viewkendaraan');
-
-        Route::get('/tambahdata', [KendaraanController::class, 'tambahdatakendaraan'])->name('tambahdatakendaraan');
+        Route::get('/tambahdata', [KendaraanController::class, 'tambahdatakendaraan'])->name('kendaraan.create');
         Route::post('/insertdata', [KendaraanController::class, 'insertdata'])->name('kendaraan.insert');
 
-        Route::get('/tampilkandata/{id}', [KendaraanController::class, 'tampilkandata'])->name('tampilkandata');
-        Route::post('/updatedata/{id}', [KendaraanController::class, 'updatedata'])->name('updatedata');
+        Route::get('/tampilkandata/{id}', [KendaraanController::class, 'tampilkandata'])->name('kendaraan.show');
+        Route::post('/updatedata/{id}', [KendaraanController::class, 'updatedata'])->name('kendaraan.update');
 
-        Route::get('/delete/{id}', [KendaraanController::class, 'delete'])->name('delete');
+        Route::get('/delete/{id}', [KendaraanController::class, 'delete'])->name('kendaraan.delete');
     });
 
     Route::prefix('denda')->group(function () {

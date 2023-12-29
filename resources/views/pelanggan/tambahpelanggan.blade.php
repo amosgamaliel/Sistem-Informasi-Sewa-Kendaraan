@@ -1,5 +1,5 @@
 <x-app-layout>
-  <form action="/insertdata" method="POST" enctype="multipart/form-data">
+  <form action="{{route('pelanggan.insert')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form">
       <div class="title">Welcome</div>

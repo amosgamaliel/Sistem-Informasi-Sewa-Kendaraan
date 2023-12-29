@@ -23,16 +23,16 @@ Route::get('/', function () {
 });
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::prefix('pelanggan')->group(function () {
-        Route::get('/pelanggan', [PelangganController::class, 'create'])->name('pelanggan');
+    Route::prefix('master/pelanggan')->group(function () {
+        Route::get('', [PelangganController::class, 'create'])->name('pelanggan.index');
 
-        Route::get('/tambahpelanggan', [PelangganController::class, 'tambahpelanggan']);
-        Route::post('/insertdata', [PelangganController::class, 'insertdata']);
+        Route::get('/tambahpelanggan', [PelangganController::class, 'tambahpelanggan'])->name('pelanggan.create');
+        Route::post('/insertdata', [PelangganController::class, 'insertdata'])->name('pelanggan.insert');
 
-        Route::get('/tampilkandata/{id}', [PelangganController::class, 'tampilkandata'])->name('tampilkandata');
-        Route::post('/updatedata/{id}', [PelangganController::class, 'updatedata'])->name('updatedata');
+        Route::get('/tampilkandata/{id}', [PelangganController::class, 'tampilkandata'])->name('pelanggan.show');
+        Route::post('/updatedata/{id}', [PelangganController::class, 'updatedata'])->name('pelanggan.update');
 
-        Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('delete');
+        Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
     });
 
     Route::prefix('kendaraan')->group(function () {
@@ -41,7 +41,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/viewkendaraan', [KendaraanController::class, 'viewkendaraan'])->name('viewkendaraan');
 
         Route::get('/tambahdata', [KendaraanController::class, 'tambahdatakendaraan'])->name('tambahdatakendaraan');
-        Route::post('/insertdata', [KendaraanController::class, 'insertdata'])->name('insertdata');
+        Route::post('/insertdata', [KendaraanController::class, 'insertdata'])->name('kendaraan.insert');
 
         Route::get('/tampilkandata/{id}', [KendaraanController::class, 'tampilkandata'])->name('tampilkandata');
         Route::post('/updatedata/{id}', [KendaraanController::class, 'updatedata'])->name('updatedata');

@@ -29,12 +29,12 @@ class PelangganController extends Controller
     public function updatedata(Request $request, $id){
         $data = Pelanggan::find($id);
         $data->update($request->all());
-        return redirect()->route('pelanggan')->with('succes','Pelanggan Berhasil Dirubah');
+        return redirect()->route('pelanggan')->with('toast_succes','Pelanggan Berhasil Dirubah');
     }
     public function delete($id){
         $data = Pelanggan::find($id);
         $data->delete();
-        return redirect()->route('pelanggan')->with('succes','Pelanggan Berhasil Dihapus');
+        return redirect()->route('pelanggan')->with('toast_succes', 'Pelanggan Berhasil Dihapus');
     }
     
 }

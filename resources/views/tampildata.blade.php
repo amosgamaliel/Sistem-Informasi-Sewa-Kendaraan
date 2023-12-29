@@ -1,91 +1,35 @@
-<div>
-    <!-- I have not failed. I've just found 10,000 ways that won't work. - Thomas Edison -->
-    <!doctype html>
-    <html lang="en">
-
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
-
-        <title>Kendaraan</title>
-    </head>
-
-    <body>
-        <h2>
-            <div class="text-center mb-4">Edit Data Kendaraan</div>
-        </h2>
-
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="/updatedata/{{$data->id}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Model Kendaraan</label>
-                                    <input type="text" class="form-control" name="model_kendaraan" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $data->model_kendaraan }}">
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Tipe Kendaraan</label>
-                                        <select class="form-select" name="tipe_kendaraan_id" aria-label="Default select example">
-                                            <option selected>{{$data->tipe_kendaraan_id}}</option>
-                                            <option value="Mobil">Mobil</option>
-                                            <option value="Motor">Motor</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Merk Kendaraan</label>
-                                        <input type="text" name="merk_kendaraan" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->merk_kendaraan}}">
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nomor Polisi</label>
-                                    <input type="text" name="nomor_polisi" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->nomor_polisi}}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nomor Rangka</label>
-                                    <input type="text" name="nomor_rangka" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $data->nomor_rangka }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nomor Mesin</label>
-                                    <input type="text" class="form-control" name="nomor_mesin" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $data->nomor_mesin }}">
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Tahun Pembuatan</label>
-                                        <input type="text" name="tahun_pembuatan" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->tahun_pembuatan}}">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Harga Sewa/Hari</label>
-                                        <input type="text" name="harga_sewa" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->harga_sewa}}">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+<x-app-layout>
+    <form action="/updatedata/{{ $data->id}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form">
+            <div class="title">Edit Data</div>
+            <div class="subtitle">Anda Sedang Malakukan Perubahan</div>
+            <div class="input-container ic1">
+                <label for="firstname" class="placeholder">Nama</label>
+                <div class="cut"></div>
+                <input id="firstname" class="input" type="text" name="nama" placeholder=" " value="{{ $data->nama }}" />
             </div>
+            <div class="input-container ic2">
+                <label for="lastname" class="placeholder">Nik</label>
+                <div class="cut"></div>
+                <input id="lastname" class="input" type="number" name="nik" placeholder=" " value="{{ $data->nik }}" />
+            </div>
+            <div class="input-container ic2">
+                <label for="lastname" class="placeholder">No_Hp</label>
+                <div class="cut"></div>
+                <input id="lastname" class="input" type="number" name="No_Hp" placeholder=" " value="{{ $data->no_hp }}" />
+            </div>
+            <div class="input-container ic2">
+                <label for="email" class="placeholder">Email</>
+                    <div class="cut cut-short"></div>
+                    <input id="email" class="input" type="text" name="email" placeholder=" " value="{{ $data->email }}" />
+            </div>
+            <div class="input-container ic2">
+                <label for="email" class="placeholder">Alamat</>
+                    <div class="cut cut-short"></div>
+                    <input id="email" class="input" type="text" name="alamat" placeholder=" " value="{{ $data->alamat }}" />
+            </div>
+            <button type="text" class="submit">Simpan Perubahan</button>
         </div>
-
-
-        <!-- Optional JavaScript; choose one of the two! -->
-
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-        </script>
-
-        <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
-    -->
-    </body>
-
-    </html>
-</div>
+    </form>
+</x-app-layout>

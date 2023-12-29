@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('pelanggans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->bigInteger('contact');
+            $table->string('nik');
+            $table->string('no_hp');
+            $table->string('email');
             $table->string('alamat');
             $table->timestamps();
         });

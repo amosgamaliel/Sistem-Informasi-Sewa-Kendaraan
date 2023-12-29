@@ -50,10 +50,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('denda')->group(function () {
 
         Route::get('/denda', [DendaController::class, 'index'])->name('denda');
-        Route::get('/user', [DendaController::class, 'asd']);
 
-        Route::get('/tambahdenda', [DendaController::class, 'tambahdenda'])->name('tambahdenda');
-        Route::post('/simpandata', [DendaController::class, 'simpandata'])->name('simpandata');
+        Route::get('/tambahdenda', [DendaController::class, 'tambahdenda'])->name('denda.create');
+        Route::post('/simpandata', [DendaController::class, 'simpandata'])->name('denda.insert');
     });
 
     Route::redirect('/', 'login');

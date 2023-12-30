@@ -110,10 +110,91 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-6 "></div>
-                        <div class="flex gap-4 mb-6">
-                            <a href="#" class="w-full px-4 py-3 text-center text-gray-100 bg-blue-600 border border-transparent dark:border-gray-700 hover:border-blue-500 hover:text-blue-700 hover:bg-blue-100 dark:text-gray-400 dark:bg-gray-700 dark:hover:bg-gray-900 rounded-xl">
-                                Booking sekarang</a>
+                        <div class="mb-6 ">
+                            <div class="flex items-center bg-gray-100 font-poppins dark:bg-gray-800 ">
+                                <div class="justify-center flex-1 max-w-6xl py-4 mx-auto text-center lg:py-10 ">
+                                    <div x-data="{ open: false }">
+                                        <div x-show="open" class="fixed inset-0 overflow-y-auto">
+                                            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                                <!-- Background overlay, show/hide based on modal state -->
+                                                <div x-show="open" class="fixed inset-0 transition-opacity" aria-hidden="true">
+                                                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                                </div>
+
+                                                <!-- This element is to trick the browser into centering the modal contents. -->
+                                                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                                                <!-- Modal -->
+                                                <div x-show="open" class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                                    <div class="bg-white">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-2xl font-semibold mb-4">Form Pemesanan</h5>
+                                                            <button @click="open = false" type="button" class="absolute top-0 right-0 m-4 text-gray-700 hover:text-gray-900 focus:outline-none">
+                                                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body p-8">
+                                                            <form id="form" action="/place-order" method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <input type="hidden" value="{{ $kendaraan->id }}" name="kendaraan_id">
+                                                                <input type="hidden" value="{{ Auth::user()->id }}" name="pelanggan_id">
+                                                                <input type="hidden" value="{{ $kendaraan->harga }}" name="total_bayar">
+                                                                <div class="mb-3">
+                                                                    <label class="block text-sm font-medium text-gray-600">Nama Pemesan <i class="fas fa-user"></i></label>
+                                                                    <input type="text" class="mt-1 p-2 w-full border rounded-md" name="name" value="{{ Auth::user()->name }}" autofocus required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="block text-sm font-medium text-gray-600">Email <i class="fas fa-envelope"></i></label>
+                                                                    <input type="email" class="mt-1 p-2 w-full border rounded-md" value="{{ Auth::user()->email }}" name="email" required>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <div class="flex">
+                                                                        <div class="w-1/2 pr-2">
+                                                                            <label class="block text-sm font-medium text-gray-600">Tanggal Sewa <i class="fas fa-calendar-alt"></i></label>
+                                                                            <input type="date" class="mt-1 p-2 w-full border rounded-md" name="tanggal_sewa" required value="{{ date('Y-m-d') }}" min="{{ date('Y-m-d') }}">
+                                                                        </div>
+                                                                        <div class="w-1/2 pl-2">
+                                                                            <label class="block text-sm font-medium text-gray-600">Lama sewa
+                                                                                @if ($kendaraan->category->nama == 'Mobil')
+                                                                                <i class="fas fa-car"></i>
+                                                                                @elseif ($kendaraan->category->nama == 'Motor') <i class="fas fa-motorcycle"></i>
+                                                                                @endif
+                                                                            </label>
+                                                                            <input type="number" min="1" class="mt-1 p-2 w-full border rounded-md" name="lama_sewa" value="1" required>
+                                                                            <small>*dalam hari</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="block text-sm font-medium text-gray-600">Catatan <i class="fas fa-edit"></i></label>
+                                                                    <textarea class="mt-1 p-2 w-full border rounded-md" name="catatan" style="height: 100px"></textarea>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="modal-footer p-4">
+                                                            <button @click="open = false" type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" form="form" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                                                                Simpan Pesanan
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Trigger button -->
+                                        <button @click="open = true" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            Open Modal
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

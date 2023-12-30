@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOrderRequest;
 use Illuminate\Http\Request;
 use App\Models\Kendaraan;
+use App\Models\Transaksi;
 
 class TambahTransaksiController extends Controller
 {
@@ -36,5 +38,12 @@ class TambahTransaksiController extends Controller
             'sopir_bbm' => $sopir_bbm,
             'orderDetails' => null,
         ]);
+    }
+
+    public function createOrder(CreateOrderRequest $request){
+        $validated = $request->validated();
+        $transaksi = Transaksi::create($validated);
+
+        return redirect()->route('transaksi.index')->with('success', 'Berhasil menambahkan pesanan');
     }
 }

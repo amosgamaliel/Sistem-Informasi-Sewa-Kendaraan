@@ -7,6 +7,7 @@ use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TambahTransaksiController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pilih/kendaraan', [TambahTransaksiController::class, 'indexKendaraan'])->name('transaksi.pilih');
-Route::get('/detail/{kendaraan}', [TambahTransaksiController::class, 'showKendaraan'])->name('transaksi.detail-kendaraan');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    
+    Route::prefix('core/transaksi')->group(function () {
+        Route::get('', [TransaksiController::class, 'index'])->name('transaksi.index');
+        Route::get('/pilih/kendaraan', [TambahTransaksiController::class, 'indexKendaraan'])->name('transaksi.pilih');
+        Route::get('/detail/{kendaraan}', [TambahTransaksiController::class, 'showKendaraan'])->name('transaksi.detail-kendaraan');
+        Route::post('/place-order', [TambahTransaksiController::class, 'createOrder'])->name('transaksi.create');
+    });
 
     Route::prefix('master/pelanggan')->group(function () {
         Route::get('', [PelangganController::class, 'create'])->name('pelanggan.index');

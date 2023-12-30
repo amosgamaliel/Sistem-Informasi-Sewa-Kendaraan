@@ -1,19 +1,19 @@
 <x-app-layout>
     <div class="container-xxl py-5">
-        <div class="container px-lg-5">
+        <div class="container px-lg-5 px-5">
                 <h2 class="mt-2">Koleksi Mobil Kami</h2>
             
             <!-- Ini untuk search mobil -->
-            <!-- <div class="row mt-n2 wow fadeInUp justify-content-center" data-wow-delay="0.1s">
+            <div class="row mt-n2 wow fadeInUp justify-content-center" data-wow-delay="0.1s">
                 <div class="col-md-6 col-sm-12 mb-5">
-                    <form action="/project ">
+                    <form autocomplete="off">
                         <div class="input-group mb-5">
-                            <input type="text" class="form-control" placeholder="Mau cari apa?" name="search" onchange="submit()">
+                            <input type="text" class="-full dark:bg-gray-800 dark:border-gray-800 px-4 dark:placeholder-gray-500 dark:text-gray-400 py-2.5 text-base text-gray-900 rounded-lg font-normal border border-gray-200" placeholder="Mau cari apa?" name="search"  autocomplete="off">
                             <button class="btn btn-outline-primary" type="submit" id="button-addon2"><i class="fas fa-search fa-2x"></i></button>
                         </div>
                     </form>
                 </div>
-            </div> -->
+            </div>
             @if ($kendaraan -> count() > 0)
             <div class="grid grid-cols-3 grid-flow-row gap-2">
                 @foreach ($kendaraan as $item)
@@ -47,7 +47,6 @@
             </div>
             @else
             <div class="text-center">
-                <img src="/img/sad.png" alt="" width="200px" class="img-fluid mb-3">
                 <p class="text-center fs-2">Data tidak ditemukan!</p>
             </div>
             @endif

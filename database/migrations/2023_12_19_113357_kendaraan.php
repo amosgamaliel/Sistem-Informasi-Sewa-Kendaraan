@@ -8,27 +8,34 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
-            $table->string('tipe_kendaraan_id');
-            $table->string('model_kendaraan');
-            $table->string('merk_kendaraan');
-            $table->string('nomor_polisi');
-            $table->string('nomor_rangka');
-            $table->string('nomor_mesin');
-            $table->integer('tahun_pembuatan');
-            $table->integer('harga_sewa');
+            $table->string('nama');
+            $table->string('slug');
+            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
+            $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->string('image')->nullable();
+            $table->string('warna');
+            $table->string('tahun');
+            $table->integer('harga');
+            $table->string('deskripsi');
+            $table->string('plat_nomor')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('kendaraans');
     }

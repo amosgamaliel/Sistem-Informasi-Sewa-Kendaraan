@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="/updatedata/{{ $data->id}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('pelanggan.update', $data->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form">
             <div class="title">Edit Data</div>

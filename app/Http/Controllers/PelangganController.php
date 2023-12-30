@@ -10,10 +10,10 @@ class PelangganController extends Controller
     public function create(){
 
         $data = Pelanggan::all();
-        return view('datapelanggan', compact('data'));
+        return view('pelanggan.data-pelanggan', compact('data'));
     }
     public function tambahpelanggan(){
-        return view('tambahpelanggan');
+        return view('pelanggan.tambahpelanggan');
     }
     public function insertdata(Request $request){
         //dd($request->all());
@@ -23,7 +23,7 @@ class PelangganController extends Controller
     public function tampilkandata($id){
         $data = Pelanggan::find($id);
        // dd($data);
-       return view('tampildata', compact('data'));
+       return view('pelanggan.tampildata', compact('data'));
     }
 
     public function updatedata(Request $request, $id){

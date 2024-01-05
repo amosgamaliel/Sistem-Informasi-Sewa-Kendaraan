@@ -30,6 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/delete/{id}', [PelangganController::class,'delete'])->name('delete');
 
+    Route::get('/membership', [PelangganController::class,'membership']);
+    Route::post('/tambahmember', [PelangganController::class,'tambahmember']);
+
+
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
 

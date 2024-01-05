@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelanggan;
+use App\Models\Membership;
 
 class PelangganController extends Controller
 {
@@ -34,7 +35,14 @@ class PelangganController extends Controller
     public function delete($id){
         $data = Pelanggan::find($id);
         $data->delete();
-        return redirect()->route('pelanggan')->with('toast_succes', 'Pelanggan Berhasil Dihapus');
+        return redirect()->route('pelanggan')->with('succes', 'Pelanggan Berhasil Dihapus');
     }
-    
+    public function membership(){
+        return view('membership');
+    }
+    public function tambahmember(Request $request){
+        //dd($request->all());
+        Membership::create($request->all());
+        return redirect()->route('pelanggan')->with('succes', 'Pelanggan Berhasil Dihapus');
+    }
 }

@@ -1,10 +1,7 @@
 <x-app-layout>
-  <form action="/updatedata/{{ $data->id}}" method="POST" enctype="multipart/form-data">
+<form action="/updatedata/{{ $data->id }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="form">
-      <div class="title">Edit Data</div>
-      <div class="subtitle">Anda Sedang Malakukan Perubahan</div>
-      <div class="input-container ic1">
+    <div class="input-container ic1">
         <label for="firstname" class="placeholder">Nama</label>
         <div class="cut"></div>
         <input id="firstname" class="input" type="text" name="nama" placeholder=" " value="{{ $data->nama }}"  />

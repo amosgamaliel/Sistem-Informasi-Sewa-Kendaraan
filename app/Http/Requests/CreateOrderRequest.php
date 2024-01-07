@@ -28,7 +28,7 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'kendaraan_id' => 'required|exists:kendaraans,id',
-            'pelanggan_id' => 'required|exists:users,id',
+            'pelanggan_id' => 'required|exists:pelanggans,id',
             'tanggal_sewa' => 'required|date',
             'lama_sewa' => 'required|integer|min:1',
             'total_bayar' => 'required|integer',

@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Membership;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pelanggan extends Model
+class membership extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function membership()
+    public function pelanggan()
     {
-        return $this->belongsTo(Membership::class,'membership_id','id');
+        return $this->hasMany(Pelanggan::class);
     }
 }

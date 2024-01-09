@@ -21,8 +21,12 @@ return new class extends Migration
             $table->foreignId('type_id')->constrained('types')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('image')->nullable();
+            $table->string('daya');
+            $table->string('bahan_bakar');
             $table->string('warna');
-            $table->string('tahun');
+            $table->string('nomor_rangka');
+            $table->string('nomor_mesin');
+            $table->string('tahun_pembuatan');
             $table->integer('harga');
             $table->string('deskripsi');
             $table->string('plat_nomor')->nullable();

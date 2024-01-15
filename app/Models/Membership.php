@@ -15,4 +15,9 @@ class membership extends Model
     {
         return $this->hasMany(Pelanggan::class);
     }
+    public function hapus()
+{
+    $this->delete();
+}
+
 }

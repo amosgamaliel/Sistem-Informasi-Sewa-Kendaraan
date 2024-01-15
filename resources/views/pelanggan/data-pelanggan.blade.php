@@ -5,7 +5,15 @@
             <div class="pt-4 rounded shadow bg-white dark:bg-gray-900">
                 <div class="flex px-6 pb-4 border-b dark:border-gray-700">
                     <h1 class="text-xl font-bold dark:text-gray-400"> </h1>
-                    <h2> <a href="{{route('pelanggan.create')}}" type="button" class="btn btn-success">Tambah +</a></h2>
+                    <h2> <a href="{{route('pelanggan.create')}}" type="button" class="btn btn-success inline-block text-green-600 dark:text-green-400">Tambah +</a></h2>
+
+                  <div class="col-sm-10 ml-5">
+                    <form action="{{route('pelanggan.index')}}" method="GET">
+                      <input type="search" class="form-control" id="inputPassword" nama="search" value="{{$request->search}}" placeholder="Cari..">
+                    </form>
+                  </div>
+                  <h2> <a href="{{route('datamembership')}}" type="button" class="btn btn-success inline-block text-blue-600 dark:text-blue-400 ml-5">Membership</a></h2>
+
                 </div>
                 <div class="p-4 overflow-x-auto">
                     <table class="w-full table-auto">
@@ -42,6 +50,7 @@
       @endforeach
     </tbody>
   </table>
+  {{ $data->links() }}
   </section>
 
   @include('sweetalert::alert')

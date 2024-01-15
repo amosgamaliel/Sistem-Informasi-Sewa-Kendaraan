@@ -7,10 +7,15 @@ use App\Models\Pelanggan;
 use App\Models\Membership;
 class PelangganController extends Controller
 {
-    public function create(){
+    public function create(Request $request){
 
-        $data = Pelanggan::all();
-        return view('pelanggan.data-pelanggan', compact('data'));
+        if($request->has('search')){
+            $data = Pelanggan::where('nama','like','%' .$request->search.'%')->paginate(4);
+        }else{
+            $data = Pelanggan::paginate(4);
+        }
+
+        return view('pelanggan.data-pelanggan', compact('data','request'));
     }
     public function tambahpelanggan(){
         $datamember = Membership::all();

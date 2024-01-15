@@ -51,6 +51,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::get('/tambahmembership', [MembershipController::class, 'tambahmembership'])->name('tambahmembership');
         Route::post('/memberinsert', [MembershipController::class, 'insert'])->name('memberinsert');
+
+        Route::get('/hapus/{id}', [MembershipController::class, 'hapus'])->name('hapus');
        
     });
 

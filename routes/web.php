@@ -74,6 +74,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::get('/tambahdenda', [DendaController::class, 'tambahdenda'])->name('denda.create');
         Route::post('/simpandata', [DendaController::class, 'simpandata'])->name('denda.insert');
+        Route::get('/edit/{id}', [DendaController::class, 'edit'])->name('denda.edit');
+        Route::post('/update/{id}', [DendaController::class, 'update'])->name('denda.update');
     });
 
     Route::redirect('/', 'login');

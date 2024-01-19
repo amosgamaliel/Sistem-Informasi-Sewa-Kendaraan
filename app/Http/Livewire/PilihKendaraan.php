@@ -19,6 +19,8 @@ class PilihKendaraan extends Component
     public $modalConfirmDeleteVisible;
     public $namaMobil;
     public $selectedJenisKendaraan;
+    public $selectedBrand;
+    public $selectedTransmission;
     public function render()
     {
         return view('livewire.pilih-kendaraan', [
@@ -41,6 +43,17 @@ class PilihKendaraan extends Component
             $builder->where('nama', 'like', '%' . $this->namaMobil . '%');
         }
 
+        if ($this->selectedJenisKendaraan) {
+            $builder->where('category_id', $this->selectedJenisKendaraan);
+        }
+
+        if ($this->selectedTransmission) {
+            $builder->where('type_id', $this->selectedTransmission);
+        }
+
+        if ($this->selectedBrand) {
+            $builder->where('brand_id', $this->selectedBrand);
+        }
         return $builder->paginate(9);
     }
 

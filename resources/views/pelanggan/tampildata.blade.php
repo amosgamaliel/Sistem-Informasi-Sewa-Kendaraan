@@ -1,35 +1,36 @@
 <x-app-layout>
-    <form action="{{route('pelanggan.update', $data->id)}}" method="POST" enctype="multipart/form-data">
+  <div class="modal-body p-8">
+     <form id="form" action="{{route('pelanggan.update', $data->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="form">
-            <div class="title">Edit Data</div>
-            <div class="subtitle">Anda Sedang Malakukan Perubahan</div>
-            <div class="input-container ic1">
-                <label for="firstname" class="placeholder">Nama</label>
-                <div class="cut"></div>
-                <input id="firstname" class="input" type="text" name="nama" placeholder=" " value="{{ $data->nama }}" />
-            </div>
-            <div class="input-container ic2">
-                <label for="lastname" class="placeholder">Nik</label>
-                <div class="cut"></div>
-                <input id="lastname" class="input" type="number" name="nik" placeholder=" " value="{{ $data->nik }}" />
-            </div>
-            <div class="input-container ic2">
-                <label for="lastname" class="placeholder">No_Hp</label>
-                <div class="cut"></div>
-                <input id="lastname" class="input" type="number" name="No_Hp" placeholder=" " value="{{ $data->no_hp }}" />
-            </div>
-            <div class="input-container ic2">
-                <label for="email" class="placeholder">Email</>
-                    <div class="cut cut-short"></div>
-                    <input id="email" class="input" type="text" name="email" placeholder=" " value="{{ $data->email }}" />
-            </div>
-            <div class="input-container ic2">
-                <label for="email" class="placeholder">Alamat</>
-                    <div class="cut cut-short"></div>
-                    <input id="email" class="input" type="text" name="alamat" placeholder=" " value="{{ $data->alamat }}" />
-            </div>
-            <button type="text" class="submit">Simpan Perubahan</button>
+        <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-600">Nama <i class="fas fa-user"></i></label>
+            <input type="text" class="mt-1 p-2 w-full border rounded-md" name="nama" autofocus required value="{{ $data->nama }}">
         </div>
-    </form>
+          <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-600">Nik <i class="fas fa-user"></i></label>
+            <input type="number" class="mt-1 p-2 w-full border rounded-md" name="nik" autofocus required value="{{ $data->nik }}">
+          </div>
+          <div class="mb-3">
+              <label class="block text-sm font-medium text-gray-600">No_HP <i class="fas fa-user"></i></label>
+              <input type="number" class="mt-1 p-2 w-full border rounded-md" name="no_hp" autofocus required value="{{ $data->no_hp }}">
+          </div>
+          <div class="mb-3">
+              <label class="block text-sm font-medium text-gray-600">Email <i class="fas fa-user"></i></label>
+              <input type="email" class="mt-1 p-2 w-full border rounded-md" name="email" autofocus required value="{{ $data->email }}">
+          </div>
+          <div class="mb-3">
+              <label class="block text-sm font-medium text-gray-600">Alamat <i class="fas fa-user"></i></label>
+              <input type="text" class="mt-1 p-2 w-full border rounded-md" name="alamat" autofocus required value="{{ $data->alamat }}">
+          </div>
+      </form>
+          </div>
+              <div class="modal-footer p-4">
+                  <button type="submit" form="form" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                        Simpan
+                  </button>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
 </x-app-layout>

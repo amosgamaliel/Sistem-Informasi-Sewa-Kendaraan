@@ -26,9 +26,10 @@ class DendaController extends Controller
         //dd($request->all());
             Denda::create($request->all());
            // denda::create($request->expect(['token','submit']));
-            return redirect()->route('denda');
+            return redirect()->route('denda.create');
     }
     
+
     /** 
      * Show the form for creating a new resource.
      */
@@ -59,7 +60,9 @@ class DendaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dendas = Denda::find($id);
+        // denda::create($request->expect(['token','submit']));
+         return  view('denda.editdatadenda', compact ('dendas'));
     }
 
     /**
@@ -67,7 +70,11 @@ class DendaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Denda::find($id);
+        $data->update($request->all());
+
+        // dd($data);
+        return redirect()->route('denda.create')->with('success',' Data Berhasil Diupdate');
     }
 
     /**

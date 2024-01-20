@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TambahTransaksiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\MembershipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/updatedata/{id}', [PelangganController::class, 'updatedata'])->name('pelanggan.update');
 
         Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
+
+        Route::get('/datamembership', [MembershipController::class, 'create'])->name('datamembership');
+
+        Route::get('/tambahmembership', [MembershipController::class, 'tambahmembership'])->name('tambahmembership');
+        Route::post('/memberinsert', [MembershipController::class, 'insert'])->name('memberinsert');
+
+        Route::get('/hapus/{id}', [MembershipController::class, 'hapus'])->name('hapus');
+       
     });
 
     Route::prefix('master/kendaraan')->group(function () {
@@ -65,6 +74,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::get('/tambahdenda', [DendaController::class, 'tambahdenda'])->name('denda.create');
         Route::post('/simpandata', [DendaController::class, 'simpandata'])->name('denda.insert');
+        Route::get('/edit/{id}', [DendaController::class, 'edit'])->name('denda.edit');
+        Route::post('/update/{id}', [DendaController::class, 'update'])->name('denda.update');
     });
 
     Route::redirect('/', 'login');

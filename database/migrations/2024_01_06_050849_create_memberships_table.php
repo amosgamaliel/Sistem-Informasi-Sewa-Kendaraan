@@ -8,26 +8,27 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('pelanggans', function (Blueprint $table) {
+        Schema::create('memberships', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('membership_id')->nullable();
-            $table->string('nik');
-            $table->string('no_hp');
-            $table->string('email');
-            $table->string('alamat');
+            $table->string('slug');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('pelanggans');
+        Schema::dropIfExists('memberships');
     }
 };
